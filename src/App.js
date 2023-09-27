@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import StudentHome from './components/StudentHome';
 import AdminHome from './components/AdminHome';
