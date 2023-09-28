@@ -47,10 +47,10 @@ function EditStudent(props) {
   return (
       <div>
         <Button id="addStudent" variant="outlined" color="primary" style={{margin: 10}} onClick={handleClickOpen}>
-          Add Student
+          Edit Student
         </Button>
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Add Student</DialogTitle>
+            <DialogTitle>Edit Student</DialogTitle>
             <DialogContent  style={{paddingTop: 20}} >
               <TextField id="StudentName" autoFocus fullWidth label="Student name" name="student_id" onChange={handleChange}  />
               <TextField id="StudentName" autoFocus fullWidth label="Student name" name="student_name" onChange={handleChange}  />

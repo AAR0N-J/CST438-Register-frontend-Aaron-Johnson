@@ -81,36 +81,36 @@ const AdminHome = ()  => {
       });
     }
       /* 
-   *   drop course
+   *   DELETE STUDENT
    */ 
-    const deleteStudent = (event) => {
-      setMessage('');
-      const row_id = event.target.parentNode.parentNode.rowIndex - 1;
-      console.log("drop student "+row_id);
-      const student_id = students[row_id].id;
+  //   const deleteStudent = (event) => {
+  //     setMessage('');
+  //     const row_id = event.target.parentNode.parentNode.rowIndex - 1;
+  //     console.log("drop student "+row_id);
+  //     const student_id = students[row_id].id;
       
-      if (window.confirm('Are you sure you want to drop the student?')) {
-          fetch(`${SERVER_URL}/student/${student_id}`,
-          {
-              method: 'DELETE',
-          }
-          )
-      .then(res => {
-          if (res.ok) {
-              console.log("drop ok");
-              setMessage("Student dropped.");
-              fetchStudents();
-          } else {
-              console.log("drop error");
-              setMessage("Error dropStudent. "+res.status);
-          }
-          })
-      .catch( (err) => {
-          console.log("exception dropStudent "+err);
-          setMessage("Exception. "+err);
-       } );
-      }
-  }
+  //     if (window.confirm('Are you sure you want to drop the student?')) {
+  //         fetch(`${SERVER_URL}/student/${student_id}`,
+  //         {
+  //             method: 'DELETE',
+  //         }
+  //         )
+  //     .then(res => {
+  //         if (res.ok) {
+  //             console.log("drop ok");
+  //             setMessage("Student dropped.");
+  //             fetchStudents();
+  //         } else {
+  //             console.log("drop error");
+  //             setMessage("Error dropStudent. "+res.status);
+  //         }
+  //         })
+  //     .catch( (err) => {
+  //         console.log("exception dropStudent "+err);
+  //         setMessage("Exception. "+err);
+  //      } );
+  //     }
+  // }
 
     const headers = ['Student ID', 'Name', 'Email', 'Status Code', 'Status', ' '];
 
@@ -142,7 +142,7 @@ const AdminHome = ()  => {
                           <td>{row.status_code}</td>
                           <td>{row.status}</td>
                           <td><EditStudent student={row} editStudent={editStudent}/></td>
-                          <td><button type="button" margin="auto" onClick={deleteStudent(row.student_id)}>Delete</button></td>
+                          <td><button type="button" margin="auto" >Delete</button></td>
                           </tr>
                       ))}
                   </tbody>
