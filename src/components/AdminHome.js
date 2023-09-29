@@ -16,7 +16,7 @@ const AdminHome = ()  => {
     const fetchStudents = () => {
         console.log("fetchStudnets");
         fetch(`${SERVER_URL}/student`)
-        .then((response) => { return response.json(); } )
+        .then((response) => { return response.json(); })
         .then((data) => { setStudents(data); })
         .catch((err) =>  { 
             console.log("exception fetchStudnets"+err);
@@ -64,7 +64,7 @@ const AdminHome = ()  => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({name: student_name, email: student_email, status_code: statusCode, status: student_status})
+      body: JSON.stringify({student_id: student_id, name: student_name, email: student_email, status_code: statusCode, status: student_status})
     })
       .then((res) => {
         if (res.ok) {
@@ -83,36 +83,34 @@ const AdminHome = ()  => {
       /* 
    *   DELETE STUDENT
    */ 
-  //   const deleteStudent = (event) => {
-  //     setMessage('');
-  //     const row_id = event.target.parentNode.parentNode.rowIndex - 1;
-  //     console.log("drop student "+row_id);
-  //     const student_id = students[row_id].id;
+    const deleteStudent = (event) => {
+      setMessage('');
+      const row_id = event.target.parentNode.parentNode.rowIndex - 1;
+      console.log("drop student "+row_id);
+      const student_id = students[row_id].studentId;
+      fetch(`${SERVER_URL}/student/${student_id}`,
+          {
+              method: 'DELETE',
+          }
+          )
+      .then(res => {
+          if (res.ok) {
+              console.log("drop ok");
+              setMessage("Student dropped.");
+              fetchStudents();
+          } else {
+              console.log("drop error");
+              setMessage("Error dropStudent. "+res.status);
+          }
+          })
+      .catch( (err) => {
+          console.log("exception dropStudent "+err);
+          setMessage("Exception. "+err);
+       } );
       
-  //     if (window.confirm('Are you sure you want to drop the student?')) {
-  //         fetch(`${SERVER_URL}/student/${student_id}`,
-  //         {
-  //             method: 'DELETE',
-  //         }
-  //         )
-  //     .then(res => {
-  //         if (res.ok) {
-  //             console.log("drop ok");
-  //             setMessage("Student dropped.");
-  //             fetchStudents();
-  //         } else {
-  //             console.log("drop error");
-  //             setMessage("Error dropStudent. "+res.status);
-  //         }
-  //         })
-  //     .catch( (err) => {
-  //         console.log("exception dropStudent "+err);
-  //         setMessage("Exception. "+err);
-  //      } );
-  //     }
-  // }
+  }
 
-    const headers = ['Student ID', 'Name', 'Email', 'Status Code', 'Status', ' '];
+    const headers = ['Student ID', 'Name', 'Email', 'Status Code', 'Status', 'Edit', 'Delete'];
 
     if (students.length === 0) {
       return (
@@ -136,13 +134,13 @@ const AdminHome = ()  => {
                   <tbody>
                   {students.map((row,idx) => (
                           <tr key={idx}>
-                          <td>{row.student_id}</td>
+                          <td>{row.studentId}</td>
                           <td>{row.name}</td>
                           <td>{row.email}</td>
-                          <td>{row.status_code}</td>
+                          <td>{row.statusCode}</td>
                           <td>{row.status}</td>
                           <td><EditStudent student={row} editStudent={editStudent}/></td>
-                          <td><button type="button" margin="auto" >Delete</button></td>
+                          <td><button type="button" margin="auto" onClick={deleteStudent}>Delete</button></td>
                           </tr>
                       ))}
                   </tbody>

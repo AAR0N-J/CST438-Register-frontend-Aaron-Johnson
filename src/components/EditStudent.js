@@ -15,11 +15,11 @@ function EditStudent(props) {
   const student = props.student;
 
   const [open, setOpen] = useState(false);
-  const [student_id, setStudent_id] = useState(student.student_id);
+  const [studentId, setStudent_id] = useState(student.studentId);
   const [student_name, setStudent_name] = useState(student.name);
   const [student_email, setStudent_email] = useState(student.email);
   const [student_status, setStudent_status] = useState(student.status);
-  const [status_code, setStatus_code] = useState(student.status_code);
+  const [status_code, setStatus_code] = useState(student.statusCode);
  
   
   const handleClickOpen = () => {
@@ -31,7 +31,7 @@ function EditStudent(props) {
   };
 
   const handleChange = (event) => {
-    if (event.target.name === 'student_id') { setStudent_id(event.target.value); }
+    if (event.target.name === 'studentId') { setStudent_id(event.target.value); }
     else if (event.target.name === 'student_email') { setStudent_email(event.target.value); }
     else if (event.target.name === 'student_status') { setStudent_status(event.target.value); }
     else if (event.target.name === 'student_name') { setStudent_name(event.target.value); }
@@ -40,7 +40,7 @@ function EditStudent(props) {
 
 // Save course and close modal form
   const handleUpdate = () => {
-      props.editStudent(student_id, student_name, student_email, status_code, student_status);
+      props.editStudent(studentId, student_name, student_email, status_code, student_status);
       handleClose();
   }
 
@@ -51,12 +51,12 @@ function EditStudent(props) {
         </Button>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Edit Student</DialogTitle>
-            <DialogContent  style={{paddingTop: 20}} >
-              <TextField value={student_id} id="StudentId" autoFocus fullWidth label="Student ID" name="student_id" onChange={handleChange}  />
-              <TextField value={student_name} id="StudentName" autoFocus fullWidth label="Student name" name="student_name" onChange={handleChange}  />
-              <TextField value={student_email} id="StudentEmail" autoFocus fullWidth label="Student email" name="student_email" onChange={handleChange}  /> 
-              <TextField value={status_code} id="StudentStatusCode" autoFocus fullWidth label="Student status_code" name="status_code" onChange={handleChange}  />  
-              <TextField value={student_status} id="StudentStatus" autoFocus fullWidth label="Student status" name="student_status" onChange={handleChange}  /> 
+            <DialogContent  style={{paddingTop: 20, paddingBottom: 20}} >
+            <TextField value={studentId} id="StudentId" autoFocus fullWidth label="Student ID" name="studentId" onChange={handleChange}  />
+            <TextField value={student_name} id="StudentName" autoFocus fullWidth label="Student name" name="student_name" onChange={handleChange}  />
+            <TextField value={student_email} id="StudentEmail" autoFocus fullWidth label="Student email" name="student_email" onChange={handleChange}  /> 
+            <TextField value={status_code} id="StudentStatusCode" autoFocus fullWidth label="Student status_code" name="status_code" onChange={handleChange}  />  
+            <TextField value={student_status} id="StudentStatus" autoFocus fullWidth label="Student status" name="student_status" onChange={handleChange}  />
             </DialogContent>
             <DialogActions>
               <Button color="secondary" onClick={handleClose}>Cancel</Button>
