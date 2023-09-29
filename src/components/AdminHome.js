@@ -30,7 +30,7 @@ const AdminHome = ()  => {
     const  addStudent = (student_name, student_email, statusCode, student_status) => {
       setMessage('');
       console.log("start addStudent"); 
-      fetch(`${SERVER_URL}/student/${{name: student_name, email: student_email, status_code: statusCode, status: student_status}}`,
+      fetch(`${SERVER_URL}/student`,
       { 
           method: 'POST', 
           headers: {

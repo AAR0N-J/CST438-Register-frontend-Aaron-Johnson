@@ -13,7 +13,6 @@ function AddStudent(props) {
   const [student_name, setStudent_name] = useState("");
   const [student_email, setStudent_email] = useState("");
   const [student_status, setStudent_status] = useState("");
-  const [status_code, setStatus_code] = useState(0);
  
   
   const handleClickOpen = () => {
@@ -25,15 +24,14 @@ function AddStudent(props) {
   };
 
   const handleChange = (event) => {
-    setStudent_name(event.target.name);
-    setStudent_email(event.target.email);
-    setStudent_status(event.target.status);
-    setStatus_code(event.target.status_code);
+    if (event.target.name === 'student_name') { setStudent_name(event.target.value); }
+    else if (event.target.name === 'student_email') { setStudent_email(event.target.value); }
+    else if (event.target.name === 'student_status') { setStudent_status(event.target.value); }
   }
 
 // Save course and close modal form
   const handleAdd = () => {
-      props.addStudent(student_name, student_email, status_code, student_status);
+      props.addStudent(student_name, student_email, student_status);
       handleClose();
   }
 
@@ -47,7 +45,6 @@ function AddStudent(props) {
             <DialogContent  style={{paddingTop: 20}} >
               <TextField id="StudentName" autoFocus fullWidth label="Student name" name="student_name" onChange={handleChange}  />
               <TextField id="StudentEmail" autoFocus fullWidth label="Student email" name="student_email" onChange={handleChange}  /> 
-              <TextField id="StudentStatusCode" autoFocus fullWidth label="Student status_code" name="status_code" onChange={handleChange}  />  
               <TextField id="StudentStatus" autoFocus fullWidth label="Student status" name="student_status" onChange={handleChange}  /> 
             </DialogContent>
             <DialogActions>
