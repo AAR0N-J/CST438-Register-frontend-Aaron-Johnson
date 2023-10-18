@@ -46,7 +46,7 @@ function EditStudent(props) {
 
   return (
       <div>
-        <Button id="addStudent" variant="outlined" color="primary" style={{margin: 10}} onClick={handleClickOpen}>
+        <Button id="editStudent" variant="outlined" color="primary" style={{margin: 10}} onClick={handleClickOpen}>
           Edit Student
         </Button>
         <Dialog open={open} onClose={handleClose}>

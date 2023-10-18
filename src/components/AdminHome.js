@@ -117,7 +117,7 @@ const AdminHome = ()  => {
           <div>
               <h3>No Enrolled Students</h3>
               <h4>{message}</h4>
-              <AddStudent addStudent={addStudent} />
+              <AddStudent id="AddStudent" addStudent={addStudent} />
           </div>
           );
     } else { 
@@ -139,13 +139,13 @@ const AdminHome = ()  => {
                           <td>{row.email}</td>
                           <td>{row.statusCode}</td>
                           <td>{row.status}</td>
-                          <td><EditStudent student={row} editStudent={editStudent}/></td>
-                          <td><button type="button" margin="auto" onClick={deleteStudent}>Delete</button></td>
+                          <td><EditStudent id="editStudent" student={row} editStudent={editStudent}/></td>
+                          <td><button id="deleteStudent" type="button" margin="auto" onClick={deleteStudent}>Delete</button></td>
                           </tr>
                       ))}
                   </tbody>
               </table>
-              <AddStudent addStudent={addStudent} />
+              <AddStudent id="AddStudent" addStudent={addStudent} />
           </div>
       );
    }

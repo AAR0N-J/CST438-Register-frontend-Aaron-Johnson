@@ -17,7 +17,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={StudentHome} />
               <Route path="/schedule" component={ShowSchedule} />
-              <Route path="/admin" component={AdminHome} />
+              <Route id="admin" path="/admin" component={AdminHome} />
               <Route render={ () => <h1>Page not found</h1>} />
             </Switch>
           </div>
